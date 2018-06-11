@@ -65,7 +65,7 @@ set(libs_to_build
         applications
         bridge #
         #brite
-        #buildings # #anim
+        buildings # #anim
         #click
         #config-store #
         core #
@@ -79,7 +79,7 @@ set(libs_to_build
         internet #main block, couldnt identify the problem
         #internet-apps
         lr-wpan #
-        #lte #anim
+        lte #anim
         #mesh
         mobility #
         mpi
@@ -88,7 +88,7 @@ set(libs_to_build
         #nix-vector-routing
         #olsr
         #openflow
-        #point-to-point # #anim
+        point-to-point # #anim
         #point-to-point-layout
         propagation #
         sixlowpan
@@ -99,10 +99,10 @@ set(libs_to_build
         #topology-read #needs to swap posix regex to c++ regex
         traffic-control #
         #uan
-        #virtual-net-device # #anim
+        virtual-net-device # #anim
         #visualizer
         #wave
-        #wifi # #anim
+        wifi # #anim
         #wimax
         )
 
@@ -134,6 +134,11 @@ add_subdirectory(contrib)
 #Build scratch/simulation scripts
 add_subdirectory(scratch)
 
-
+#Create wrapper library
+add_library(ns3 INTERFACE)
+target_link_libraries(ns3 INTERFACE "${ns3-libs}")
+target_include_directories(ns3 INTERFACE build)
+target_compile_definitions(ns3 INTERFACE HAVE___UINT128_T=1)
+target_compile_definitions(ns3 INTERFACE INT64X64_USE_128=1)
 
 
